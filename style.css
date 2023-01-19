@@ -1,0 +1,111 @@
+.container {
+  width: 100%;
+}
+
+#lblError {
+  color: red;
+}
+
+label{
+  color: #b7bdce;
+  font-size: 150%;
+}
+
+#table_w0{
+  margin: auto;
+}
+
+.td-bordered {
+  color: #b7bdce;
+  text-align: center;
+  border: solid .5px;
+  height: 50px;
+  width: 50px;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+
+table {
+  color: #b7bdce;
+  table-layout: auto;
+  border: solid 0px;
+  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 2s;
+  -moz-animation: fadeIn 2s;
+  -o-animation: fadeIn 2s;
+  -ms-animation: fadeIn 2s;
+}
+
+.inputCell {
+  color: white;
+  background-color: #202124;
+  border: solid 15px;
+  border-color: #202124;
+  text-align: center;
+}
+
+inputCell:focus, input:focus, select{
+  outline: white;
+}
+
+body{
+  background-color:#202124 !important;
+  padding: 2%;
+}
+
+.form-control{
+  width: 12% !important;
+}
+
+.form-group{
+  display: inline-block;
+}
+
+.form-group2{
+  display: flex;
+  flex-direction: row;
+  padding: 3%;
+}
+
+.wClass{
+  padding: 2%;
+  padding-right: 10%;
+}
+
+.wTable{
+  padding-right: 10%;
+}
+
+.wMatrix{
+  display: flex;
+  flex-direction: row;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
