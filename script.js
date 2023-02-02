@@ -6,12 +6,16 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
+
+
 function doTask(doAction){
     if(doAction == 0)
         clean();
 
-    if(doAction == 1)
+    if(doAction == 1){
         matrixInputName = generateMatrix();
+        changeNumber();
+    }
 
     if (doAction == 2 && wasGenerated) {
         matrixWithValues = getMatrixValues(matrixInputName);
@@ -225,4 +229,21 @@ function addPositionToPairedArray(c, r, posRowHistory, posColHistory, newPositio
         }
     }
     return newPositionCount;
+}
+
+function changeNumber(){
+    const matrix = document.querySelector('#table_w0');
+
+    matrix.addEventListener('click', (e) => {
+       
+        
+        if(e.target.classList.contains("inputCell")){
+            if(e.target.value === "" || e.target.value == 0){
+                e.target.value = 1;
+            } else {
+                e.target.value = 0;
+            }
+        }
+
+    });
 }

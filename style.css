@@ -54,6 +54,7 @@ table {
   border: solid 15px;
   border-color: #202124;
   text-align: center;
+  cursor:pointer;
 }
 
 inputCell:focus, input:focus, select{
