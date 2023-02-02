@@ -55,6 +55,7 @@ table {
   border-color: #202124;
   text-align: center;
   cursor:pointer;
+  caret-color:transparent;
 }
 
 inputCell:focus, input:focus, select{
@@ -92,6 +93,12 @@ body{
 .wMatrix{
   display: flex;
   flex-direction: row;
+}
+
+.p-index{
+  color:#ffffff;
+  font-weight: bold;
+  text-align: center;
 }
 
 @keyframes fadeIn {
