@@ -14,3 +14,7 @@ If you find a bug or you want to improve this algorithm, just send your PR!
 pd: just remember using this format for your commit: (e.g: "MM: date: this is my commit") -> MM = the first letter of my name and surname
 
 Thx for reading! :)
+
+***CONTRIBUTORS:
+-marcosmoroz
+-ssgalo
