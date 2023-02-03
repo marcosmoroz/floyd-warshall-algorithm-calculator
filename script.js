@@ -51,8 +51,13 @@ function generateMatrix() {
         }
         txtHtml += '</tr>';
     }
+
     txtHtml += '</table></div><br>';
-    document.getElementById("container").innerHTML = txtHtml;
+
+    const paragraphWithIndex = `<p class="p-index">w0</p> ${txtHtml}`;
+
+    document.getElementById("container").innerHTML = paragraphWithIndex;
+    //document.getElementById("container").innerHTML = txtHtml;
     var newElement = document.createElement("div");
     var currentElement = newElement.setAttribute("id", "div_wMatrix");
     document.getElementById("container").insertBefore(newElement, currentElement);
@@ -128,6 +133,7 @@ function handler(matrixWithValues, n){
 function printMatrixIntoElement(elementName, matrixWithValues, posRow, posCol, count, newPositionCount){
     document.getElementById("lblError").innerHTML = "";
     wCount = parseInt(elementName.substring(5),10);
+    console.log("wCount: " + wCount);
     if(Number.isInteger(wCount)){
         txtHtml = '<table id="table_w'+ wCount +'" class="wTable">';
     }else{
@@ -141,7 +147,12 @@ function printMatrixIntoElement(elementName, matrixWithValues, posRow, posCol, c
         txtHtml += '</tr>';
     }
     txtHtml += '</table><br>';
-    document.getElementById(elementName).innerHTML = txtHtml;
+    
+    const paragraphWithIndex = `<p class="p-index">w${wCount}</p> ${txtHtml}`;
+
+
+    document.getElementById(elementName).innerHTML = paragraphWithIndex;
+    //document.getElementById(elementName).innerHTML = txtHtml;
     highlightPositionIntoMatrix(posRow, posCol, count, newPositionCount);
     ++wCount;
 }
@@ -234,16 +245,18 @@ function addPositionToPairedArray(c, r, posRowHistory, posColHistory, newPositio
 function changeNumber(){
     const matrix = document.querySelector('#table_w0');
 
-    matrix.addEventListener('click', (e) => {
+    if(matrix != null){
+        matrix.addEventListener('click', (e) => {
        
         
-        if(e.target.classList.contains("inputCell")){
-            if(e.target.value === "" || e.target.value == 0){
-                e.target.value = 1;
-            } else {
-                e.target.value = 0;
+            if(e.target.classList.contains("inputCell")){
+                if(e.target.value === "" || e.target.value == 0){
+                    e.target.value = 1;
+                } else {
+                    e.target.value = 0;
+                }
             }
-        }
-
-    });
+    
+        });
+    }
 }
