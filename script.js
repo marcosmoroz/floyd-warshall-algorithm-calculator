@@ -62,6 +62,16 @@ function generateMatrix() {
     var currentElement = newElement.setAttribute("id", "div_wMatrix");
     document.getElementById("container").insertBefore(newElement, currentElement);
     document.getElementById("div_wMatrix").classList.add("wMatrix");
+
+    var coordsGroup = document.getElementById("coordsGroup");
+    if (coordsGroup) {
+        coordsGroup.style.display = "flex";
+    }
+    var coordsInput = document.getElementById("coordsInput");
+    if (coordsInput) {
+        coordsInput.value = "";
+    }
+
     wasGenerated = true;
     return matrixInputName;
 }
@@ -197,6 +207,10 @@ function resetMatrix(matrixWithValues, matrixInputName){
             document.getElementById("div_wMatrix").innerHTML = "";
         }
     }
+    var coordsInput = document.getElementById("coordsInput");
+    if (coordsInput) {
+        coordsInput.value = "";
+    }
     wasGenerated = true;
     wasCalculated = false;
     return true;
@@ -206,6 +220,14 @@ function clean(){
     document.getElementById("container").innerHTML = "";
     wasGenerated = false;
     wasCalculated = false;
+    var coordsGroup = document.getElementById("coordsGroup");
+    if (coordsGroup) {
+        coordsGroup.style.display = "none";
+    }
+    var coordsInput = document.getElementById("coordsInput");
+    if (coordsInput) {
+        coordsInput.value = "";
+    }
 }
 
 function highlightPositionIntoMatrix(posRow, posCol, wCount, newPositionCount){
@@ -255,8 +277,73 @@ function changeNumber(){
                 } else {
                     e.target.value = 0;
                 }
+                updateTextBoxFromMatrix();
             }
     
         });
     }
 }
+
+function updateMatrixFromTextBox() {
+    if (typeof wasGenerated === "undefined" || !wasGenerated) return;
+    const coordsInput = document.getElementById("coordsInput");
+    if (!coordsInput) return;
+    const rowsAndColsInput = document.getElementById("rowsAndCols");
+    if (!rowsAndColsInput) return;
+    const rowsAndCols = parseInt(rowsAndColsInput.value, 10);
+    if (isNaN(rowsAndCols) || rowsAndCols <= 0) return;
+
+    const text = coordsInput.value;
+    const matches = text.match(/\d+/g);
+    const activeCells = new Set();
+    if (matches) {
+        for (let i = 0; i < matches.length - 1; i += 2) {
+            const r = parseInt(matches[i], 10);
+            const c = parseInt(matches[i+1], 10);
+            if (r >= 1 && r <= rowsAndCols && c >= 1 && c <= rowsAndCols) {
+                activeCells.add(`${r-1}!${c-1}`);
+            }
+        }
+    }
+
+    for (let i = 0; i < rowsAndCols; i++) {
+        for (let j = 0; j < rowsAndCols; j++) {
+            const cell = document.getElementById(`input_${i}!${j}`);
+            if (cell) {
+                if (activeCells.has(`${i}!${j}`)) {
+                    cell.value = "1";
+                } else {
+                    cell.value = "";
+                }
+            }
+        }
+    }
+}
+
+function updateTextBoxFromMatrix() {
+    if (typeof wasGenerated === "undefined" || !wasGenerated) return;
+    const coordsInput = document.getElementById("coordsInput");
+    if (!coordsInput) return;
+    const rowsAndColsInput = document.getElementById("rowsAndCols");
+    if (!rowsAndColsInput) return;
+    const rowsAndCols = parseInt(rowsAndColsInput.value, 10);
+    if (isNaN(rowsAndCols) || rowsAndCols <= 0) return;
+
+    let coordsList = [];
+    for (let i = 0; i < rowsAndCols; i++) {
+        for (let j = 0; j < rowsAndCols; j++) {
+            const cell = document.getElementById(`input_${i}!${j}`);
+            if (cell && cell.value == "1") {
+                coordsList.push(`${i + 1} ${j + 1}`);
+            }
+        }
+    }
+    coordsInput.value = coordsList.join(", ");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const coordsInput = document.getElementById("coordsInput");
+    if (coordsInput) {
+        coordsInput.addEventListener("input", updateMatrixFromTextBox);
+    }
+});

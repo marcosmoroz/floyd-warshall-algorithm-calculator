@@ -126,3 +126,20 @@ body{
   100% { opacity: 1; }
 }
 
+.coords-input {
+  width: auto !important;
+  min-width: 250px;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 2px solid #b7bdce;
+  border-radius: 6px;
+  padding: 5px 10px;
+}
+
+.coords-input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  outline: none;
+}
+
+
